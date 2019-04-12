@@ -39,7 +39,9 @@ public class CompiledPath implements Path {
         this.root = invertScannerFunctionRelationship(root);
         this.isRootPath = isRootPath;
     }
-
+    public RootPathToken getRootPath(){
+        return this.root;
+    }
     @Override
     public boolean isRootPath() {
         return isRootPath;

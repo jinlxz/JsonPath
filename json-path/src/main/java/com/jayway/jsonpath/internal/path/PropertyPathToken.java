@@ -27,7 +27,7 @@ import static com.jayway.jsonpath.internal.Utils.onlyOneIsTrueNonThrow;
 /**
  *
  */
-class PropertyPathToken extends PathToken {
+public class PropertyPathToken extends PathToken {
 
     private final List<String> properties;
     private final String stringDelimiter;
@@ -39,7 +39,14 @@ class PropertyPathToken extends PathToken {
         this.properties = properties;
         this.stringDelimiter = Character.toString(stringDelimiter);
     }
-
+    public PropertyPathToken(PropertyPathToken token) {
+    	this.properties=token.properties;
+    	this.stringDelimiter=token.stringDelimiter;
+    	this.prev=null;
+    	this.next=null;
+    	this.definite=token.definite;
+    	this.upstreamDefinite=token.upstreamDefinite;
+    }
     public List<String> getProperties() {
         return properties;
     }

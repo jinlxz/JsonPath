@@ -40,7 +40,16 @@ public class PredicatePathToken extends PathToken {
     PredicatePathToken(Collection<Predicate> predicates) {
         this.predicates = predicates;
     }
-
+    public Collection<Predicate> getPredicates(){
+    	return this.predicates;
+    }
+    public PredicatePathToken(PredicatePathToken token) {
+    	this.prev=null;
+    	this.next=null;
+    	this.definite=token.definite;
+    	this.upstreamDefinite=token.upstreamDefinite;
+    	this.predicates=token.predicates;
+    }
     @Override
     public void evaluate(String currentPath, PathRef ref, Object model, EvaluationContextImpl ctx) {
         if (ctx.jsonProvider().isMap(model)) {

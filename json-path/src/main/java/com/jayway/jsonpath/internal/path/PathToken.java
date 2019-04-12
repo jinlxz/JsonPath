@@ -25,17 +25,16 @@ import java.util.List;
 
 public abstract class PathToken {
 
-    private PathToken prev;
-    private PathToken next;
-    private Boolean definite = null;
-    private Boolean upstreamDefinite = null;
+    protected PathToken prev;
+    protected PathToken next;
+    protected Boolean definite = null;
+    protected Boolean upstreamDefinite = null;
 
     PathToken appendTailToken(PathToken next) {
         this.next = next;
         this.next.prev = this;
         return next;
     }
-
     void handleObjectProperty(String currentPath, Object model, EvaluationContextImpl ctx, List<String> properties) {
 
         if(properties.size() == 1) {
@@ -137,22 +136,22 @@ public abstract class PathToken {
         }
     }
 
-    PathToken prev(){
+    public PathToken prev(){
         return prev;
     }
 
-    PathToken next() {
+    public PathToken next() {
         if (isLeaf()) {
             throw new IllegalStateException("Current path token is a leaf");
         }
         return next;
     }
 
-    boolean isLeaf() {
+    public boolean isLeaf() {
         return next == null;
     }
 
-    boolean isRoot() {
+    public boolean isRoot() {
         return  prev == null;
     }
 
@@ -213,7 +212,7 @@ public abstract class PathToken {
 
     public abstract boolean isTokenDefinite();
 
-    protected abstract String getPathFragment();
+    public abstract String getPathFragment();
 
     public void setNext(final PathToken next) {
         this.next = next;
